@@ -54,13 +54,19 @@ try
     [AllowAnonymous] async(IPlayerBusiness<int> bs, clsPlayer<int> newPlayer) => Results.Ok(await bs.updatePlayer(newPlayer)));
 
     app.MapPost("game",
-    [AllowAnonymous] async(IGameBusiness<int> bs, clsNewGame newGame) => Results.Ok(await bs.addGame(newGame)));
+    [AllowAnonymous] async(IGameBusiness<int> bs, clsNewGame<int> newGame) => Results.Ok(await bs.addGame(newGame)));
+
+    app.MapPost("game/{id}",
+    [AllowAnonymous] async(IGameBusiness<int> bs, int whiteTeam) => Results.Ok(await bs.startGame(whiteTeam,1)));
 
     app.MapGet("game/{id}",
     [AllowAnonymous] async(IGameBusiness<int> bs, int id) => Results.Ok(await bs.getGame(id)));
 
     app.MapPut("game/{id}",
     [AllowAnonymous] async(IGameBusiness<int> bs, clsGame<int> updatedGame) => Results.Ok(await bs.updateGame(updatedGame)));
+
+    app.MapPut("game/{id}",
+    [AllowAnonymous] async(IGameBusiness<int> bs, int idGame, int blackPlayer) => Results.Ok(await bs.addSecondTeam(idGame,blackPlayer)));
 
     app.Run();
 }

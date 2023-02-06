@@ -16,7 +16,7 @@ public sealed class clsGameRepository<TI, TC> : clsDataAccess<clsGameEntityModel
     {
     }
 
-    public async Task<TI> addGame(clsNewGame game)
+    public async Task<TI> addGame(clsNewGame<TI> game)
     {
         var p = new DynamicParameters();
         p.Add("WHITES", game.whites);

@@ -7,7 +7,7 @@ public interface IGameRepository<TI, TC>
         where TI : struct, IEquatable<TI>
         where TC : struct
 {
-    Task<TI> addGame(clsNewGame player);
+    Task<TI> addGame(clsNewGame<TI> player);
     Task<clsGameEntityModel<TI, TC>> getGame(TI id);
     Task updateGame(clsGame<TI> updatedGame);
     Task deleteGame(TI id);
